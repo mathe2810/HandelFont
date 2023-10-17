@@ -113,7 +113,7 @@ void init()
 int main() {
     init();
     int tailletab;
-    t_font *fontCustom=createFont("../OldLondon.fnt","../OldLondon.bmp",&tailletab);
+    t_font *fontCustom=createFont("../horrendo.fnt","../horrendo.bmp",&tailletab);
     int charwanted=0;
     BITMAP *buffer= create_bitmap(SCREEN_W,SCREEN_H);
     while (!key[KEY_ESC])
@@ -123,7 +123,10 @@ int main() {
         if(key[KEY_RIGHT]&&charwanted!=tailletab){charwanted++;}
         rectfill(buffer,0,0,SCREEN_W,SCREEN_H, makecol(255,255,255));
         draw_sprite(buffer,fontCustom[charwanted].charbmp,SCREEN_W/2+fontCustom[charwanted].xOffset,SCREEN_H/2+fontCustom[charwanted].yOffset);
-        draw_sprite(buffer,fontCustom[charwanted+1].charbmp,fontCustom[charwanted].xAdvance+SCREEN_W/2+fontCustom[charwanted+1].xOffset,SCREEN_H/2+fontCustom[charwanted+1].yOffset);
+        if(charwanted!=tailletab)
+        {
+            draw_sprite(buffer,fontCustom[charwanted+1].charbmp,fontCustom[charwanted].xAdvance+SCREEN_W/2+fontCustom[charwanted+1].xOffset,SCREEN_H/2+fontCustom[charwanted+1].yOffset);
+        }
         blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
         rest(60);
     }
